@@ -2,6 +2,7 @@
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "sourceMap": true,
+    "composite": true,
     "noImplicitAny": false,
     "module": "esnext",
     "target": "es5",
