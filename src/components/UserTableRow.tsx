@@ -15,11 +15,14 @@ export function UserTableRows(props) {
   return <tbody>{rows}</tbody>;
 }
 export function UserTableRow(props) {
+  const [empid, SetEmpId] = useState(props.emp_id);
   const user: User_details = props.user;
   function handleChange(event) {
+   
+   console.log(JSON.stringify(event.target.name));
     props.onChange(event.target.name);
   }
-  const [empid, SetEmpId] = useState(props.emp_id);
+  
   return (
     <tr>
       <td>

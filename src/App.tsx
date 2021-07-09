@@ -2,6 +2,13 @@ import {FC, useState} from 'react';
 import './App.css';
 import {Footer, User_component} from './components/UserDetails';
 import {User_list} from './components/UserList';
+import {
+	BrowserRouter as Router,
+	Route,
+	Link,
+	Switch
+} from 'react-router-dom';
+
 const App: FC = () => {
   const [empid, SetEmpId] = useState('1');
   function handleChange(event) {
@@ -9,7 +16,7 @@ const App: FC = () => {
   }
   return (
     <div className="App">
-      <header className="App-header">User Management {empid}</header>
+      <header className="App-header"><h1>User Management</h1></header>
       <div className="row">
         <div className="col-sm-8">
           <User_list emp_id={empid} onChange={handleChange}></User_list>

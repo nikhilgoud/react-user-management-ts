@@ -29,8 +29,9 @@ body {
 
 .App-header {
   background-color: #282c34;
+  color: #fff;
   min-height: 10vh;
-  display: flex;
+  text-align: center;
   justify-content: space-between;
   align-items: center;
 }
