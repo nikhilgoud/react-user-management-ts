@@ -427,7 +427,7 @@ export function getAllUsers(): User_details[] {
 }
 export function getUserDetails(id: number): User_details | undefined {
   for (let i = 0; i < users.length; i++) {
-    if (users[i].id === id) {
+    if (users[i].id == id) {
       return users[i];
     }
   }

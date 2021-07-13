@@ -12,6 +12,8 @@ import {
   FiMail,
   FiMapPin
 } from 'react-icons/fi';
+import {BrowserRouter as Router, Route, Link, Switch, useParams} from 'react-router-dom';
+
 import Popover from 'react-bootstrap/Popover';
 import Overlay from 'react-bootstrap/Overlay';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
@@ -27,7 +29,15 @@ export function clean_url(url: string | null | undefined) {
     return '#';
   }
 }
+export function RouteUserComponet() {
+  const {id} = useParams();
 
+  return (
+    <div>
+      <User_component emp_id={id ? id : ''}></User_component>
+    </div>
+  );
+}
 export function User_component(props) {
   const user_details: User_details | undefined = getUserDetails(Number(props.emp_id));
 
