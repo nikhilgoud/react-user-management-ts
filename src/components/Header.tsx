@@ -1,17 +1,22 @@
+import {isAuth} from '../features/counter/employeeSlice';
 import {FC} from 'react';
 import {Nav, Navbar} from 'react-bootstrap';
-
+import {useSelector} from 'react-redux';
+import {BrowserRouter as Router, Route, Link, Redirect, Switch} from 'react-router-dom';
 function Header_a() {
+  const auth: boolean = useSelector(isAuth);
   return (
     <header className="header">
       <h1>User Management</h1>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="/">View using drilling props</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="/view">View using Route</Nav.Link>
-          <Nav.Link href="/add">View using Redux</Nav.Link>
-        </Nav>
-      </Navbar>
+      {!auth ? (
+        <Redirect to="/" push />
+      ) : (
+        <Navbar bg="dark" variant="dark">
+          <Link to="/home">View using drilling props</Link>
+          <Link to="/view">View using Route</Link>
+          <Link to="/add">View using Redux</Link>
+        </Navbar>
+      )}
     </header>
   );
 }

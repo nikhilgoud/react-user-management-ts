@@ -1,8 +1,8 @@
 import Table from 'react-bootstrap/Table';
 
-import {getUserDetails, getAllUsers} from '../API/user_details';
+import {getUserDetails, getAllUsers, getAllAPIUsers} from '../API/user_details';
 import Button from 'react-bootstrap/Button';
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {User_details, userprops} from './../common/Custom_interface';
 import {ReduxTableRows, TableRows, UserTableRows} from './UserTableRow';
 
@@ -57,7 +57,16 @@ export function UserList(props) {
 }
 
 export function ReduxUserList(props) {
-  const [users, setUsers] = useState(getAllUsers());
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    getAllAPIUsers().then((result: any) => {
+      setUsers(result);
+    });
+  }, []);
+  function handleChange(event) {
+    props.onChange(event);
+  }
 
   return (
     <div>

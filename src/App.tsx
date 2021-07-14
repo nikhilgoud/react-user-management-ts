@@ -1,13 +1,13 @@
 import {FC, useState} from 'react';
 import './App.css';
 import {Footer, User_component} from './components/UserDetails';
-import {ReduxUserList, UserList, User_list} from './components/UserList';
-import UserEdit from './components/UserEdit';
+import {ReduxUserList, User_list} from './components/UserList';
 import {View} from './components/View';
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header_a from './components/Header';
 import {useSelector} from 'react-redux';
-import {selectEmployee} from './features/counter/counterSlice';
+import {selectEmployee} from './features/counter/employeeSlice';
+import Login from './components/Login';
 
 const App: FC = () => {
   const [empid, SetEmpId] = useState('1');
@@ -15,6 +15,7 @@ const App: FC = () => {
   function handleChange(event) {
     SetEmpId(event);
   }
+
   return (
     <div className="App">
       <Router>
@@ -23,7 +24,7 @@ const App: FC = () => {
           <hr />
 
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/home">
               Using State
               <div className="row col-sm-12">
                 <div className="col-sm-8">
@@ -34,8 +35,10 @@ const App: FC = () => {
                 </div>
               </div>
             </Route>
+            <Route exact path="/">
+              <Login></Login>
+            </Route>
             <Route path="/view">
-              Using Route
               <View></View>
             </Route>
             <Route path="/add">

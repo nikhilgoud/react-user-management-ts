@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {getUserDetails} from './../API/user_details';
+import {getAPIUserDetails, getUserDetails} from './../API/user_details';
 import {Button} from 'react-bootstrap';
 import Table from 'react-bootstrap/Table';
 import {BrowserRouter as Router, Route, Link, Switch, useParams} from 'react-router-dom';
@@ -20,11 +20,10 @@ export default function UserEdit(props) {
 
   const [values, setValues] = useState(a);
   useEffect(() => {
-    if (props.emp_id != values.id) {
-      const User = getUserDetails(props.emp_id);
-      setValues(User ? User : a);
-    }
-  });
+    getAPIUserDetails(Number(props.emp_id)).then((result: any) => {
+      setValues(result);
+    });
+  }, [props.emp_id]);
   function SaveClick(event) {
     console.log(JSON.stringify(values));
   }

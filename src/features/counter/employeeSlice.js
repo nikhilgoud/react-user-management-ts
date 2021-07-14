@@ -1,35 +1,43 @@
 import {createSlice} from '@reduxjs/toolkit';
 
+function loadInitialState() {
+  if (localStorage.getItem('redux')) {
+    return JSON.parse(localStorage.getItem('redux'));
+  } else {
+    return {
+      value: 0,
+      empid: -1,
+      isAuth: false
+    };
+  }
+}
+
 export const slice = createSlice({
   name: 'counter1',
-  initialState: {
-    value: 0,
-    empid: -1
-  },
+  initialState: loadInitialState(),
   reducers: {
-    increment: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
-    },
     changeEmployee: (state, action) => {
       return {
         ...state,
         empid: action.payload
       };
+    },
+    login: (state) => {
+      return {
+        ...state,
+        isAuth: true
+      };
+    },
+    logout: (state) => {
+      return {
+        ...state,
+        isAuth: false
+      };
     }
   }
 });
 
-export const {increment, decrement, incrementByAmount, changeEmployee} = slice.actions;
+export const {changeEmployee, login, logout} = slice.actions;
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
@@ -46,5 +54,6 @@ export const incrementAsync = (amount) => (dispatch) => {
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectCount = (state) => state.counteraaaa.value;
 export const selectEmployee = (state) => state.counteraaaa.empid;
+export const isAuth = (state) => state.counteraaaa.isAuth;
 
 export default slice.reducer;

@@ -425,12 +425,30 @@ const users: User_details[] = [
 export function getAllUsers(): User_details[] {
   return users;
 }
-export function getUserDetails(id: number): User_details | undefined {
+export async function getAllAPIUsers() {
+  let result = await fetch('http://localhost:5000/users', {
+    method: 'GET'
+  });
+  result = await result.json();
+  return result;
+}
+export function getUserDetails(id: number): User_details {
   for (let i = 0; i < users.length; i++) {
     if (users[i].id == id) {
       return users[i];
     }
   }
-
-  return undefined;
+  return {id: -1};
+}
+export async function getAPIUserDetails(id?: number) {
+  const result = await fetch('http://localhost:5000/users', {
+    method: 'GET'
+  });
+  let x: User_details[] = [];
+  x = await result.json();
+  for (let i = 0; i < x.length; i++) {
+    if (x[i].id == id) {
+      return x[i];
+    }
+  }
 }

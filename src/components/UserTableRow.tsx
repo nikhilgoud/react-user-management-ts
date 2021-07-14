@@ -13,14 +13,11 @@ import {
 } from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {
-  decrement,
-  increment,
-  incrementByAmount,
   changeEmployee,
   incrementAsync,
   selectCount,
   selectEmployee
-} from './../features/counter/counterSlice';
+} from '../features/counter/employeeSlice';
 export function UserTableRows(props) {
   const rows = [] as any;
   const [empid, SetEmpId] = useState(props.emp_id);
@@ -43,7 +40,7 @@ export function UserTableRow(props) {
   return (
     <tr>
       <td>
-        <Button size="sm" name={user.id.toString()} onClick={handleChange}>
+        <Button size="sm" name={user.id?.toString()} onClick={handleChange}>
           <FiEye className="btn-primary"></FiEye>
         </Button>
       </td>

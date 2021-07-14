@@ -17,7 +17,8 @@ import {BrowserRouter as Router, Route, Link, Switch, useParams} from 'react-rou
 import Popover from 'react-bootstrap/Popover';
 import Overlay from 'react-bootstrap/Overlay';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import {getUserDetails} from '../API/user_details';
+import {getAllAPIUsers, getAPIUserDetails, getUserDetails} from '../API/user_details';
+import {useEffect, useState} from 'react';
 export function Footer(props) {
   return <p>Copyright © 2021 {props.company} All Rights Reserved</p>;
 }
@@ -39,7 +40,15 @@ export function RouteUserComponet() {
   );
 }
 export function User_component(props) {
-  const user_details: User_details | undefined = getUserDetails(Number(props.emp_id));
+  const [empdetails, Setempdetails] = useState({});
+  const user_details: User_details = empdetails;
+  const [emp_id, Setemp_id] = useState(props.emp_id);
+  useEffect(() => {
+    Setemp_id(props.emp_id);
+    getAPIUserDetails(Number(props.emp_id)).then((result: any) => {
+      Setempdetails(result);
+    });
+  }, [props.emp_id]);
 
   if (typeof user_details === 'undefined') {
     return <p>No Users Found</p>;

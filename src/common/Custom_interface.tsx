@@ -1,5 +1,5 @@
 export interface User_details {
-  id: number;
+  id?: number;
   name?: string;
   username?: string;
   address?: {
