@@ -1,5 +1,5 @@
 {
-  "users": [
+  "contacts": [
     {
       "id": 1,
       "name": "Leanne Graham",
@@ -420,5 +420,5 @@
       "updated_at": "2016-08-23T12:23:13Z",
       "updated_by": "-1"
     }
-  ]
+  ]  
 }
