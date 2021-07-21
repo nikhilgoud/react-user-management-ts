@@ -7,9 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import store from './app/store';
 import {Provider, useSelector} from 'react-redux';
 store.subscribe(() => {
-  localStorage.removeItem("redux");
- localStorage.setItem('redux', JSON.stringify(store.getState().counteraaaa));
-})
+  localStorage.setItem('redux', JSON.stringify(store.getState().counteraaaa));
+});
 ReactDOM.render(
   <Provider store={store}>
     <App />
