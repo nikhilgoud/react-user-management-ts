@@ -27,8 +27,11 @@ body {
   align-content: center;
 }
 
-.header {
-  display: flex;
+.App-header {
+  background-color: #282c34;
+  color: #fff;
+  min-height: 10vh;
+  text-align: center;
   justify-content: space-between;
   align-items: center;
 }
